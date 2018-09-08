@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Outputs the time
+Resources:
+  Test:
+    Properties:
+      CodeUri: s3://oening-lambda-environment/1d4a3639e8e4002c9cfbb392c1236038
+      Events:
+        MyTimeApi:
+          Properties:
+            Method: any
+            Path: /{proxy+}
+          Type: Api
+      Handler: handler.handler
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
