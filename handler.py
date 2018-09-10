@@ -1,4 +1,4 @@
-from Chalice import Chalice, Response, CORSConfig
+from chalice import Chalice, Response, CORSConfig
 import os
 import json
 
