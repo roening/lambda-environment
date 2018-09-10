@@ -12,5 +12,5 @@ Resources:
         MyTimeApi:
           Type: Api
           Properties:
-            Path: /test/{proxy+}
+            Path: /{proxy+}
             Method: any
