@@ -10,6 +10,6 @@ cors_config = CORSConfig(
 
 app = Chalice(app_name='lambda-python-sample')
 
-@app.route('/', methods=['GET'], cors=cors_config)
+@app.route('/test', methods=['GET'], cors=cors_config)
 def rootFunction():
     Response(body={'Status': 'Ok'}, status_code=200, headers={'Content-Type': 'application/json'})
