@@ -5,7 +5,7 @@ Resources:
   Test:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: handler.handler
+      Handler: handler.app
       Runtime: python3.6
       CodeUri: ./
       Events:
