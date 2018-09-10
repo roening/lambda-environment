@@ -2,7 +2,6 @@ version: 0.2
 phases:
   install:
     commands:
-      - pip install chalice -t .
       - aws cloudformation package --template-file samTemplate.yaml --s3-bucket oening-lambda-environment --output-template-file outputSamTemplate.yaml
 artifacts:
   type: zip
