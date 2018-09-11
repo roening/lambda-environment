@@ -10,19 +10,23 @@
 		"Description": "Token to connect with GitHub."
 	},
 	"GitHubOwner": {
+		"Default": "roening",
 		"Type": "String",
 		"Description": "GitHub username of repository owner."
 	},
 	"GitHubRepo": {
+		"Default": "serverless-environment",
 		"Type": "String",
 		"Description": "Application repository name."
 	},
 	"GitHubRepoBranch": {
+		"Default": "master",
 		"Type": "String",
 		"Description": "Application branch name."
 	},
 	"CodeBuildBucketName": {
 		"Type": "String",
+		"Default": "oening-serverless-environment",
 		"Description": "The same bucket specified in the buildspec.yml file."
 	}
 	},
