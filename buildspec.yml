@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    BUCKET_NAME: "oening-lambda-environment"
+    BUCKET_NAME: "oening-serverless-environment"
 phases:
   install:
     commands:
