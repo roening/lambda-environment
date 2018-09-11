@@ -680,7 +680,8 @@
 								":aws:transform/Serverless-2016-10-31"
 							]
 						]
-					}
+					},
+					"Effect": "Allow"
 				}
 				],
 				"Version": "2012-10-17"
