@@ -665,8 +665,18 @@
 				},
 				{
 					"Action": "cloudformation:CreateChangeSet",
-					"Resource": "arn:aws:cloudformation:sa-east-1:aws:transform/Serverless-2016-10-31",
-					"Effect": "Allow"
+					"Resource": {
+						"Fn::Join": [
+							"",
+							[
+								"arn:aws:cloudformation:",
+								{
+									"Ref": "AWS::Region"
+								},
+								":aws:transform/Serverless-2016-10-31"
+							]
+						]
+					}
 				}
 				],
 				"Version": "2012-10-17"
