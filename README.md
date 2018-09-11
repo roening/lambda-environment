@@ -45,7 +45,7 @@ Ao criar um *stack* do CloudFormation utilizando este template, os seguintes rec
 
 A topologia abaixo demonstra como será o fluxo de deploy do ambiente criado por este template AWS CloudFormation.
 
-![alt text](https://github.com/roening/lambda-environment/blob/master/topology.png)
+![topology](https://github.com/roening/lambda-environment/blob/master/images/topology.png)
 
 
 ### buildspec.yml
@@ -58,4 +58,10 @@ O projeto AWS CodeBuild também criará um pacote *.zip* contendo o template AWS
 Template AWS CloudFormation para criação dos recursos necessários da aplicação. Este arquivo será utilizado como referência durante a criação do pacote AWS CloudFormation. Basicamente esse template define a criação de uma função Lambda com um API Gateway como trigger utilizando *proxy integration*.
 A topologia abaixo demonstra a estrutura dos recursos da aplicação e o fluxo de comunicação.
 
-![alt text](https://github.com/roening/lambda-environment/blob/master/app-topology.png)
+![app-topology](https://github.com/roening/lambda-environment/blob/master/images/app-topology.png)
+
+Após o AWS CodePipeline finalizar o deploy da aplicação, você poderá obter o link de acesso à aplicação através do painel do API Gateway.
+![api-gateway](https://github.com/roening/lambda-environment/blob/master/images/api-gateway.png)
+
+Como a aplicação contém uma rota */index* a aplicação poderá ser acessada através do link abaixo:
+https://7wefpfspd1.execute-api.sa-east-1.amazonaws.com/Prod/index
