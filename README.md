@@ -64,4 +64,5 @@ Após o AWS CodePipeline finalizar o deploy da aplicação, você poderá obter 
 ![api-gateway](https://github.com/roening/lambda-environment/blob/master/images/api-gateway.png)
 
 Como a aplicação contém uma rota */index* a aplicação poderá ser acessada através do link abaixo:
+
 https://7wefpfspd1.execute-api.sa-east-1.amazonaws.com/Prod/index
