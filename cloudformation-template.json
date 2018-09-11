@@ -3,24 +3,81 @@
 	"Parameters": {
 	"EnvironmentName": {
 		"Type": "String",
-		"Description": "Enter the environment name."
+		"Description": "This name will be used to name all new resources."
 	},
 	"GitHubToken": {
 		"Type": "String",
-		"Description": "Enter the GitHub oauth token."
+		"Description": "Token to connect with GitHub."
 	},
 	"GitHubOwner": {
 		"Type": "String",
-		"Description": "Enter the GitHub owner."
+		"Description": "GitHub username of repository owner."
 	},
 	"GitHubRepo": {
 		"Type": "String",
-		"Description": "Enter the GitHub repository name."
+		"Description": "Application repository name."
+	},
+	"GitHubRepoBranch": {
+		"Type": "String",
+		"Description": "Application branch name."
 	},
 	"CodeBuildBucketName": {
 		"Type": "String",
-		"Description": "Enter the bucket name of environment."
+		"Description": "The same bucket specified in the buildspec.yml file."
 	}
+	},
+	"Metadata": {
+		"AWS::CloudFormation::Interface": {
+			"ParameterGroups": [
+				{
+					"Label": {
+						"default": "Environment Settings"
+					},
+					"Parameters": [
+						"EnvironmentName"
+					]
+				},
+				{
+					"Label": {
+						"default": "CodeBuild Settings"
+					},
+					"Parameters": [
+						"CodeBuildBucketName"
+					]
+				},
+				{
+					"Label": {
+						"default": "GitHub Settings"
+					},
+					"Parameters": [
+						"GitHubRepo",
+						"GitHubRepoBranch",
+						"GitHubOwner",
+						"GitHubToken"
+					]
+				}
+			],
+			"ParameterLabels": {
+				"EnvironmentName": {
+					"default": "Project Name"
+				},
+				"CodeBuildBucketName": {
+					"default": "S3 Bucket Name"
+				},
+				"GitHubRepo": {
+					"default": "Repository Name"
+				},
+				"GitHubRepoBranch": {
+					"default": "Branch Name"
+				},
+				"GitHubOwner": {
+					"default": "Owner Name"
+				},
+				"GitHubToken": {
+					"default": "OAuth Token"
+				}
+			}
+		}
 	},
 	"Resources": {
 	"Codepipeline": {
@@ -58,7 +115,9 @@
 				},
 				"RunOrder": 1,
 				"Configuration": {
-					"Branch": "master",
+					"Branch": {
+					"Ref": "GitHubRepoBranch"
+					},
 					"OAuthToken": {
 					"Ref": "GitHubToken"
 					},
@@ -126,7 +185,7 @@
 				"Configuration": {
 					"ActionMode": "CHANGE_SET_REPLACE",
 					"Capabilities": "CAPABILITY_IAM",
-					"ChangeSetName": "MyChangeSet",
+					"ChangeSetName": "CodePipeline",
 					"RoleArn": {
 					"Fn::GetAtt": [
 						"CloudformationIAMRole",
@@ -160,7 +219,7 @@
 				"RunOrder": 1,
 				"Configuration": {
 					"ActionMode": "CHANGE_SET_EXECUTE",
-					"ChangeSetName": "MyChangeSet",
+					"ChangeSetName": "CodePipeline",
 					"StackName": {
 					"Ref": "EnvironmentName"
 					}
@@ -259,27 +318,54 @@
 					"Effect": "Allow"
 				},
 				{
-					"Action": [
-					"cloudformation:CreateStack",
-					"cloudformation:DeleteStack",
-					"cloudformation:DescribeStacks",
-					"cloudformation:UpdateStack",
-					"cloudformation:CreateChangeSet",
-					"cloudformation:DeleteChangeSet",
-					"cloudformation:DescribeChangeSet",
-					"cloudformation:ExecuteChangeSet",
-					"cloudformation:SetStackPolicy",
-					"cloudformation:ValidateTemplate",
-					"iam:PassRole"
-					],
-					"Resource": "*",
-					"Effect": "Allow"
-				},
+		            "Effect": "Allow",
+		            "Action": [
+		                "cloudformation:SetStackPolicy",
+		                "cloudformation:CreateStack",
+		                "cloudformation:DeleteStack",
+		                "cloudformation:UpdateStack",
+		                "cloudformation:CreateChangeSet",
+		                "cloudformation:DescribeChangeSet",
+		                "cloudformation:ExecuteChangeSet",
+		                "cloudformation:DeleteChangeSet",
+		                "cloudformation:DescribeStacks"
+		            ],
+		            "Resource": {
+		            	"Fn::Join": [
+		            		"",
+		            		[
+		            			"arn:aws:cloudformation:",
+		            			{
+		            				"Ref": "AWS::Region"
+		            			},
+		            			":",
+		            			{
+		            				"Ref": "AWS::AccountId"
+		            			},
+		            			":stack/",
+		            			{
+		            				"Ref": "EnvironmentName"
+		            			},
+		            			"/*"
+		            		]
+		            	]
+		            }
+		        },
+		        {
+		            "Effect": "Allow",
+		            "Action": "cloudformation:ValidateTemplate",
+		            "Resource": "*"
+		        },
 				{
 					"Action": [
 					"codebuild:BatchGetBuilds",
 					"codebuild:StartBuild"
 					],
+					"Resource": "*",
+					"Effect": "Allow"
+				},
+				{
+					"Action": "iam:PassRole",
 					"Resource": "*",
 					"Effect": "Allow"
 				}
