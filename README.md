@@ -63,6 +63,6 @@ A topologia abaixo demonstra a estrutura dos recursos da aplicação e o fluxo d
 Após o AWS CodePipeline finalizar o deploy da aplicação, você poderá obter o link de acesso à aplicação através do painel do API Gateway.
 ![api-gateway](https://github.com/roening/lambda-environment/blob/master/images/api-gateway.png)
 
-Como a aplicação contém uma rota */index* a aplicação poderá ser acessada através do link abaixo:
+Como a aplicação contém uma rota */index*, o acesso poderá ser realizado através do link abaixo:
 
 https://7wefpfspd1.execute-api.sa-east-1.amazonaws.com/Prod/index
