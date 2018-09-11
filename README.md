@@ -15,22 +15,22 @@ Os serviços AWS utilizados foram:
 ### cloudformation-template.json
 Este arquivo é um template do serviço AWS CloudFormation utilizado para criar o ambiente de automação. Para utilizar este template na criação de um *stack* AWS CloudFormation, os seguintes parametros serão solicitados:
 
-#### Project Name
+#### *Project Name*
 O nome especificado neste parâmetro será utilizado para nomear todos os recursos criados pela *stack* AWS CloudFormation.
 
-#### S3 Bucket Name
+#### *S3 Bucket Name*
 Este bucket S3 será utilizado para armazenar o pacote AWS CloudFormation criado pelo AWS CodeBuild.
 
-#### Repository Name
+#### *Repository Name*
 Nome do repositório onde encontra-se a aplicação. Nesse caso, será utilizado o nome deste próprio repositório: *lambda-environment*
 
-#### Branch Name
+#### *Branch Name*
 Nome da branch onde encontra-se a versão estável da aplicação.
 
-#### Owner Name
+#### *Owner Name*
 Nome do usuário GitHUb que tem permissão de *owner* no repositório.
 
-#### OAuth Token
+#### *OAuth Token*
 GitHub token para conceder acesso ao AWS CloudPipeline.
 
 
