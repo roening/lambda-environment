@@ -1,4 +1,4 @@
-# lambda-environment
+# serverless-environment
 Este projeto foi desenvolvido para demonstrar a utilização de alguns serviços AWS, voltados para a cultura DevOps, que facilitam o teste, build e deploy de aplicações.
 
 Os serviços AWS utilizados foram:
@@ -22,7 +22,7 @@ O nome especificado neste parâmetro será utilizado para nomear todos os recurs
 Este bucket S3 será utilizado para armazenar o pacote AWS CloudFormation criado pelo AWS CodeBuild.
 
 #### *Repository Name*
-Nome do repositório onde encontra-se a aplicação. Nesse caso, será utilizado o nome deste próprio repositório: *lambda-environment*
+Nome do repositório onde encontra-se a aplicação. Nesse caso, será utilizado o nome deste próprio repositório: *serverless-environment*
 
 #### *Branch Name*
 Nome da branch onde encontra-se a versão estável da aplicação.
